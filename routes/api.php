@@ -11,16 +11,11 @@ Route::get('/user', function (Request $request) {
 
 
 Route::post('/register',[AuthController::class, 'register']);
-
 Route::get('/login', [AuthController::class, 'login']);
-
-
 Route::get('/plant', [PlantesController::class, 'index']);
-
 Route::post('/plant', [PlantesController::class, 'store']);
 Route::get('/plant/{name}', [PlantesController::class, 'show']);
 Route::delete('/plant/{id}', [PlantesController::class, 'destroy']);
-
 
 
 // route user connect
