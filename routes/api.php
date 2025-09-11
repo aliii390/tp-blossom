@@ -20,3 +20,10 @@ Route::get('/plant', [PlantesController::class, 'index']);
 Route::post('/plant', [PlantesController::class, 'store']);
 Route::get('/plant/{name}', [PlantesController::class, 'show']);
 Route::delete('/plant/{id}', [PlantesController::class, 'destroy']);
+
+
+
+// route user connect
+Route::get('/plant', [PlantesController::class, 'index'])->middleware('auth:sanctum');
+Route::post('/plant', [PlantesController::class, 'store'])->middleware('auth:sanctum');
+Route::delete('/plant/{id}', [PlantesController::class, 'destroy'])->middleware('auth:sanctum');
