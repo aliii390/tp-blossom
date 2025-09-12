@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Plant;
 use App\Models\Plantes;
 use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
@@ -15,7 +14,7 @@ class UserPlantController extends Controller
     public function index(Request $request){
 
         $user = $request->user();
-        $plants = $user->plants;
+        $plants = $user->plantes;
 
         return $this->success($plants);
 
@@ -36,7 +35,7 @@ class UserPlantController extends Controller
         ]);
 
         // Attach the plant to the user (many-to-many)
-        $user->plants()->attach($plant->id);
+        $user->plantes()->attach($plant->id);
 
         return $this->success($plant, "Plant succesfully created by user " . $user->name, 201);
     }
@@ -44,12 +43,12 @@ class UserPlantController extends Controller
     public function destroy($id, Request $request){
 
         $user = $request->user();
-        $plant = $user->plants()->find($id);
+        $plant = $user->plantes()->find($id);
         if (!$plant) {
             return $this->error(null, 'plante non trouver', 404);
         }
         // Detach the plant from the user before deleting
-        $user->plants()->detach($plant->id);
+        $user->plantes()->detach($plant->id);
         $plant->delete();
         return $this->success(null, 'plante supprimer', 201);
 

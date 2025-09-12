@@ -50,6 +50,6 @@ class User extends Authenticatable
 
     public function plantes(): BelongsToMany
     {
-        return $this->belongsToMany(Plantes::class);
+        return $this->belongsToMany(Plantes::class, 'users_plantes', 'user_id', 'plante_id');
     }
 }
